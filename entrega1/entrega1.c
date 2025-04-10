@@ -3,6 +3,10 @@
 #include <stdbool.h>
 
 void VerClientes();
+
+void ClientesDefinidos();
+void ClientesIndefinidos();
+
 void AdicionarClientes();
 void RemoverClientes();
 
@@ -43,20 +47,66 @@ void VerClientes(){
 }
 
 void AdicionarClientes(){
-	puts("-------------")
-	char nome[20];
-	unsigned cpf;
-	printf("Nome do cliente: ");
-	scanf("%s" , nome);
-	printf("CPF do cliente: ");
-	scanf("%u" , &cpf);
-	struct clientes{char nome[20]; unsigned cpf;};
-	struct clientes cliente1;
-	strcpy(cliente1.nome , nome);
-	cliente1.cpf = cpf;
-	printf("Cliente %s com o cpf %u adicionado!\n" , cliente1.nome , cliente1.cpf);
+	unsigned short int escolha;
+	while(true){
+		puts("-------------------------------------------");
+		puts("[1] Adicionar número definido de clientes");
+		puts("[2] Adicionar número indefinido de clientes");
+		puts("[0] Menu");
+		puts("-------------------------------------------");
+		printf("> ");
+		scanf("%hu" , &escolha);
+		switch (escolha){
+			case 1:
+				ClientesDefinidos();
+				break;
+			case 2:
+				ClientesIndefinidos();
+				break;
+			case 0:
+				return;
+			default:
+				puts("Opção inválida, tente novamente:");
+				break;
+		}
+	}
+
 }
 
 void RemoverClientes(){
 	puts("Olá Mundo!\n");
+}
+
+void ClientesDefinidos(){
+	char nome[20];
+	unsigned cpf;
+	unsigned numero;
+	printf("Selecione o número de clientes a serem adicionados: ");
+	scanf("%u" , &numero);
+	for(unsigned i = 1; i <= numero; i++){
+		printf("Nome do cliente %u: " , i);
+		scanf("%s" , nome);
+		printf("CPF no cliente %u: " , i);
+		scanf("%u" , &cpf);
+	}
+	puts("Todos os clientes foram adicionados!");
+}
+
+void ClientesIndefinidos(){
+	char nome[20];
+	unsigned cpf;
+	unsigned numero = 1;
+	char sair[4];
+	while(true){
+		printf("Nome do cliente %u: " , numero);
+		scanf("%s" , nome);
+		printf("CPF do cliente %u: " ,  numero);
+		scanf("%u" , &cpf);
+		numero++;
+		printf("Deseja sair? [sim/nao]: ");
+		scanf("%s" , sair);
+		if(strcasecmp(sair , "sim") == 0){
+			return;
+		}
+	}
 }
