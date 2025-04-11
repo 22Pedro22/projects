@@ -101,17 +101,23 @@ void RemoverClientes(){
 	else{	
 		for(int i = 0; i < fim; i++){
 			puts("----------------------------");
-			printf("ID: %d\n" , i + 1);
-			printf("Nome: %s\n" , fila[i].nome);
-			printf("CPF: %s\n" , fila[i].cpf);
-			printf("Prioridade: %s\n" , fila[i].prioridade);
+			printf("\033[1;35mID: \033[m%d\n" , i + 1);
+			printf("\033[1;35mNome:\033[m%s\n" , fila[i].nome);
+			printf("\033[1;35mCPF: \033[m%s\n" , fila[i].cpf);
+			printf("\033[1;35mPrioridade: \033[m %s\n" , fila[i].prioridade);
 			puts("----------------------------");
 		}
 
-		printf("ID do usuário a ser removido: ");
+		printf("\033[1;31mID do usuário a ser removido: \033[m");
 		scanf("%d" , &id);
-		for(int i = id - 1; i < fim - 1; i++){
-			fila[i] = fila[i + 1];
+		if(id < 1 || id > fim){
+			printf("\n\033[1;31mID inválido!\033[m");
+			return;
+		}
+		else{
+			for(int i = id - 1; i < fim - 1; i++){
+				fila[i] = fila[i + 1];
+			}
 		}
 		fim--;
 	}
