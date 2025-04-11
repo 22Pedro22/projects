@@ -107,6 +107,11 @@ void RemoverClientes(){
 
 		printf("ID do usuário a ser removido: ");
 		scanf("%d" , &id);
+		for(int i = id - 1; i < fim - 1; i++){
+			fila[i] = fila[i + 1];
+		}
+		fim--;
+
 	}
 }
 
