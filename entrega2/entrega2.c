@@ -6,9 +6,12 @@ void VerClientes();
 
 void ClientesDefinidos();
 void ClientesIndefinidos();
+void ClientesOrdenados();
 
 void AdicionarClientes();
 void RemoverClientes();
+
+int Prioridade(char prioridade[10]);
 
 struct clientes {char nome[20]; unsigned cpf; char prioridade[10];};
 struct clientes fila[100];
@@ -25,7 +28,8 @@ int main(){
 		puts("-----------------------------------");
 		puts("\033[32m[1] Ver Clientes");
 		puts("[2] Adicionar Clientes");
-		puts("[3] Remover Clientes\033[m");
+		puts("[3] Remover Clientes");
+		puts("[4] Ver Clientes Ordenados\033[m");
 		puts("\033[31m[0] Sair\033[m");
 		puts("-----------------------------------");
 		printf("\033[1m>\033[m ");
@@ -39,6 +43,9 @@ int main(){
 				break;
 			case 3:
 				RemoverClientes();
+				break;
+			case 4:
+				ClientesOrdenados();
 				break;
 			case 0:
 				puts("Programa encerrado.");
@@ -162,4 +169,42 @@ void ClientesIndefinidos(){
 			return;
 		}
 	}
+}
+
+int Prioridade(char prioridade[10]){
+	if(strcasecmp(prioridade , "alta") == 0){
+		return 1;
+	}
+	if(strcasecmp(prioridade , "media") == 0){
+		return 2;
+	}
+	if(strcasecmp(prioridade , "baixa") == 0){
+		return 3;
+	}
+
+	return 0;
+}
+
+void ClientesOrdenados() {
+    struct clientes copia[100];
+    for (int i = 0; i < fim; i++) {
+        copia[i] = fila[i];
+    }
+
+    for (int i = 0; i < fim - 1; i++) {
+        for (int j = 0; j < fim - i - 1; j++) {
+            if (Prioridade(copia[j].prioridade) > Prioridade(copia[j + 1].prioridade)) {
+                struct clientes temp = copia[j];
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < fim; i++) {
+        printf("Nome: %s\n", copia[i].nome);
+        printf("CPF: %u\n", copia[i].cpf);
+        printf("Prioridade: %s\n", copia[i].prioridade);
+        puts("------------------------");
+    }
 }
