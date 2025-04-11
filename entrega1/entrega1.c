@@ -18,14 +18,17 @@ int fim = 0;
 int main(){
 	unsigned short int escolha;
 	while(true){
-		puts("-------------------");
-		puts("SELECIONE UMA OPÇÃO");
-		puts("-------------------");
-		puts("[1] Ver Clientes");
+		puts("\n\033[1;36m=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\033[m");
+		puts("\033[1;34m     GERENCIADOR DE ATENDIMENTOS\033[m");
+		puts("\033[1;36m=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\033[m");
+		puts("\033[1m\tSELECIONE UMA OPÇÃO\033[m");
+		puts("-----------------------------------");
+		puts("\033[32m[1] Ver Clientes");
 		puts("[2] Adicionar Clientes");
-		puts("[3] Remover Clientes");
-		puts("[0] Sair");
-		printf("> ");
+		puts("[3] Remover Clientes\033[m");
+		puts("\033[31m[0] Sair\033[m");
+		puts("-----------------------------------");
+		printf("\033[1m>\033[m ");
 		scanf("%hu" , &escolha);
 		switch (escolha){
 			case 1:
@@ -49,7 +52,7 @@ int main(){
 
 void VerClientes(){
 	if(fim == 0){
-		puts("Nenhum cliente definido");
+		puts("\n\033[1;31mNenhum cliente definido!\033[m");
 	}
 	else{
 		for(int i = 0; i < fim; i++){
@@ -67,11 +70,11 @@ void AdicionarClientes(){
 	unsigned short int escolha;
 	while(true){
 		puts("-------------------------------------------");
-		puts("[1] Adicionar número definido de clientes");
-		puts("[2] Adicionar número indefinido de clientes");
-		puts("[0] Menu");
+		puts("\033[32m[1] Adicionar número definido de clientes");
+		puts("[2] Adicionar número indefinido de clientes\033[m");
+		puts("\033[33m[0] Menu\033[m");
 		puts("-------------------------------------------");
-		printf("> ");
+		printf("\033[1m> \033[m");
 		scanf("%hu" , &escolha);
 		switch (escolha){
 			case 1:
@@ -83,17 +86,16 @@ void AdicionarClientes(){
 			case 0:
 				return;
 			default:
-				puts("Opção inválida, tente novamente:");
+				puts("\033[1;31mOpção inválida! tente novamente:\033[m");
 				break;
 		}
 	}
-
 }
 
 void RemoverClientes(){
 	int id;
 	if(fim == 0){
-		puts("Nenhum cliente adicionado");
+		puts("\n\033[1;31mNenhum cliente definido!\033[m");
 	}
 	else{	
 		for(int i = 0; i < fim; i++){
@@ -111,7 +113,6 @@ void RemoverClientes(){
 			fila[i] = fila[i + 1];
 		}
 		fim--;
-
 	}
 }
 
@@ -120,21 +121,21 @@ void ClientesDefinidos(){
 	unsigned cpf;
 	unsigned numero;
 	char prioridade[10];
-	printf("Selecione o número de clientes a serem adicionados: ");
+	printf("\033[1;36mSelecione o número de clientes a serem adicionados: \033[m");
 	scanf("%u" , &numero);
 	for(int i = 1; i <= numero; i++){
 		printf("Nome do cliente %d: " , i);
 		scanf("%s" , nome);
 		printf("CPF no cliente %d: " , i);
 		scanf("%u" , &cpf);
-		printf("Prioridade do cliente %d (alta/media/baixa): " , i);
+		printf("Prioridade do cliente %d (\033[31malta\033[m/\033[33mmedia\033[m/\033[32mbaixa\033[m): " , i);
 		scanf("%s" , prioridade);
 		strcpy(fila[fim].nome , nome);
 		fila[fim].cpf = cpf;
 		strcpy(fila[fim].prioridade , prioridade);
 		fim++;
 	}
-	puts("Todos os clientes foram adicionados!");
+	puts("\n\033[36mTodos os clientes foram adicionados!\033[m\n");
 }
 
 void ClientesIndefinidos(){
@@ -148,7 +149,7 @@ void ClientesIndefinidos(){
 		scanf("%s" , nome);
 		printf("CPF do cliente %u: " ,  numero);
 		scanf("%u" , &cpf);
-		printf("Prioridade do cliente %u (alta/media/baixa): " , numero);
+		printf("Prioridade do cliente %u (\033[31malta\033[m/\033[33mmedia\033[m/\033[32mbaixa\033[m): " , numero);
 		scanf("%s" , prioridade);
 		numero++;
 		strcpy(fila[fim].nome , nome);
