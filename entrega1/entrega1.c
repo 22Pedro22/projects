@@ -10,7 +10,7 @@ void ClientesIndefinidos();
 void AdicionarClientes();
 void RemoverClientes();
 
-struct clientes {char nome[20]; unsigned long cpf; char prioridade[10];};
+struct clientes {char nome[20]; char cpf[10]; char prioridade[10];};
 struct clientes fila[100];
 
 int fim = 0;
@@ -59,7 +59,7 @@ void VerClientes(){
 			puts("----------------------------");
 			printf("\033[1;35mID:\033[m %d\n" , i + 1);
 			printf("\033[1;35mNome:\033[m %s\n" , fila[i].nome);
-			printf("\033[1;35mCPF:\033[m %lu\n" , fila[i].cpf);
+			printf("\033[1;35mCPF:\033[m %s\n" , fila[i].cpf);
 			printf("\033[1;35mPrioridade:\033[m %s\n" , fila[i].prioridade);
 			puts("----------------------------");
 		}
@@ -102,7 +102,7 @@ void RemoverClientes(){
 			puts("----------------------------");
 			printf("ID: %d\n" , i + 1);
 			printf("Nome: %s\n" , fila[i].nome);
-			printf("CPF: %lu\n" , fila[i].cpf);
+			printf("CPF: %s\n" , fila[i].cpf);
 			printf("Prioridade: %s\n" , fila[i].prioridade);
 			puts("----------------------------");
 		}
@@ -118,7 +118,7 @@ void RemoverClientes(){
 
 void ClientesDefinidos(){
 	char nome[20];
-	unsigned long cpf;
+	char cpf[12];
 	unsigned numero;
 	char prioridade[10];
 	printf("\033[1;36mSelecione o número de clientes a serem adicionados: \033[m");
@@ -126,12 +126,21 @@ void ClientesDefinidos(){
 	for(int i = 1; i <= numero; i++){
 		printf("Nome do cliente %d: " , i);
 		scanf("%s" , nome);
-		printf("CPF no cliente %d: " , i);
-		scanf("%lu" , &cpf);
+		while(true){
+			printf("CPF no cliente %d: " , i);
+			scanf("%s" , cpf);
+			if(strlen(cpf) != 11){
+				printf("CPF inválido, tente novamente: ");
+				scanf("%s" , cpf);
+			}
+			else{
+				break;
+			}
+		}
 		printf("Prioridade do cliente %d (\033[31malta\033[m/\033[33mmedia\033[m/\033[32mbaixa\033[m): " , i);
 		scanf("%s" , prioridade);
 		strcpy(fila[fim].nome , nome);
-		fila[fim].cpf = cpf;
+		strcpy(fila[fim].cpf , cpf);
 		strcpy(fila[fim].prioridade , prioridade);
 		fim++;
 	}
@@ -140,20 +149,29 @@ void ClientesDefinidos(){
 
 void ClientesIndefinidos(){
 	char nome[20];
-	unsigned long cpf;
+	char cpf[12];
 	unsigned numero = 1;
 	char prioridade[10];
 	char sair[4];
 	while(true){
 		printf("Nome do cliente %u: " , numero);
 		scanf("%s" , nome);
-		printf("CPF do cliente %u: " ,  numero);
-		scanf("%lu" , &cpf);
+		while(true){
+			printf("CPF do cliente %u: " ,  numero);
+			scanf("%s" , cpf);
+			if(strlen(cpf) == 11){
+				break;
+
+			}
+			else{
+				puts("CPF inválido, tente novamente");
+			}
+		}
 		printf("Prioridade do cliente %u (\033[31malta\033[m/\033[33mmedia\033[m/\033[32mbaixa\033[m): " , numero);
 		scanf("%s" , prioridade);
 		numero++;
 		strcpy(fila[fim].nome , nome);
-		fila[fim].cpf = cpf;
+		strcpy(fila[fim].cpf , cpf);
 		strcpy(fila[fim].prioridade , prioridade);
 		fim++;
 		printf("Deseja sair? [sim/nao]: ");
