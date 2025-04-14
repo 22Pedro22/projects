@@ -16,7 +16,6 @@ struct clientes fila[100];
 int fim = 0;
 
 int main(){
-	char input[10];
 	unsigned short int escolha;
 	while(true){
 		puts("\n\033[1;36m=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\033[m");
@@ -132,7 +131,7 @@ void ClientesDefinidos(){
 	scanf("%u" , &numero);
 	for(int i = 1; i <= numero; i++){
 		printf("Nome do cliente %d: " , i);
-		scanf("%s" , nome);
+		scanf("$s" , nome);
 		while(true){
 			printf("CPF no cliente %d: " , i);
 			scanf("%s" , cpf);
