@@ -1,0 +1,48 @@
+body{
+    background-color: rgb(20, 0, 30);
+    font-family: "Courier New", Courier, monospace;
+}
+
+h1{
+    text-align: center;
+    color: #000000;
+    font-size: 20px;
+    background-color: #FF4F69;
+    width: 30.7%;
+    margin: 0 auto;
+    font-weight: bolder;
+    padding: 5px;
+    border: 1px solid white;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    width: 30%;
+    margin: 0 auto;
+    gap: 10px;
+    padding: 10px;
+}
+
+form input{
+    background-color: rgb(20, 0, 30);
+    color: #EAE6F2;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.login{
+    background-color: #00CFC1;
+    color: black;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.login:hover{
+    cursor: pointer;
+}
+
+a{
+    text-align: center;
+}

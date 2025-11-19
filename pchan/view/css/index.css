@@ -1,0 +1,58 @@
+body{
+    background-color: rgb(20, 0, 30);
+    font-family: "Courier New", Courier, monospace;
+}
+
+header,
+.introduction,
+.topics h2{
+    text-align: center;
+}
+
+header img{
+    width: 20%;
+}
+
+.introduction,
+.topics,
+.topics-list{
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.introduction,
+.topics{
+    margin: 0px 250px 20px 250px;
+}
+
+.introduction h1,
+.topics h2{
+    background-color: #FF4F69;
+    color: #000000;
+    font-weight: bolder;
+}
+
+.introduction h1,
+.topics h2{
+    padding: 5px;
+}
+
+.introduction{
+    color: #EAE6F2;
+}
+
+.introduction-content,
+.topics-list{
+    padding: 10px;
+}
+
+.topics-list {
+list-style: none;
+display: grid;
+grid-auto-flow: column; /* Preenche por colunas */
+grid-template-rows: repeat(10, auto); /* Define 10 linhas por coluna */
+grid-gap: 5px; /* Espaço entre linhas e entre colunas */
+}
+
+.topic{
+    padding-bottom: 5px;
+}
